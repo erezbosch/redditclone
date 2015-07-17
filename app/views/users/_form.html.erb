@@ -1,0 +1,25 @@
+
+<% action_url = logging_in ? session_url : users_url %>
+
+<form action="<%= action_url %>" method = "POST" >
+
+<%= auth_token %>
+
+<label for = "user_name">Username:</label>
+<input type = "text"
+        name = "user[username]"
+        value = "<%= user.username %>"
+        id = "user_name"
+        >
+<br>
+
+<label for = "user_password">Password:</label>
+<input type = "password"
+        name = "user[password]"
+        id = "user_password"
+        >
+<br>
+
+<input type="submit" value = "Submit!" >
+
+</form>

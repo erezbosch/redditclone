@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedditClone</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body><center>
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if logged_in? %>
+  <%= current_user.username %>
+  <%= button_to "log out", session_url, method: :delete %>
+<% else %>
+  <%= link_to "log in", new_session_url %>
+  <%= link_to "sign up", new_user_url %>
+<% end %>
+
+ <%= yield %>
+
+</center></body>
+</html>
