@@ -1,9 +1,30 @@
 <h1><%= @post.title %></h1>
 <h4>Author: <%= @post.author.username %></h4>
-<%= link_to "Link Provided", @post.url %>
+<%= link_to "is this true? click here", link_helper(@post.url) %>
 <br><br>
 <%= @post.content %>
-<br><br><br><br>
+
+<br><br><br><font color = "Red">
+
+<% @post.comments.each do |comment| %>
+  Comment by <%= comment.author.username.capitalize %>
+  <br>
+  <%= comment.content %>
+  <br>
+  <br>
+<% end %>
+
+<br><br><br></font color>
+
+<%= link_to "<< Write Comment", new_post_comment_url(@post) %>
+<br><br><br>
 <%= link_to "<< Edit Post",
 edit_post_url(@post) if current_user == @post.author %><br>
-<%= link_to "<< Back To Sub #{@post.sub.title}", sub_url(@post.sub) %>
+
+<br><br><br>
+Sub List:
+<br>
+<% @post.subs.each do |sub| %>
+  <%= link_to "<< To #{sub.title}", sub_url(sub) %>
+  <br>
+<% end %>

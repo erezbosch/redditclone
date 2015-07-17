@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   has_many :subs
-
+  has_many :comments, inverse_of: :author
   has_many(
     :posts,
     foreign_key: :author_id,

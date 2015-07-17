@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+
     if @post.update(post_params)
       redirect_to post_url(@post)
     else
@@ -39,7 +40,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id)
+    params.require(:post).permit(:title, :url, :content, :sub_ids => [])
   end
 
   def redirect_unless_author

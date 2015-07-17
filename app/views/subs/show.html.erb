@@ -2,6 +2,10 @@
 
 <p><%= @sub.description %></p>
 
-<%= link_to "<< Edit Sub", edit_sub_url(@sub) if is_moderator?(@sub)%>
-
+<br><br><br>
 <%= render partial: "post", collection: @sub.posts, as: :post %>
+<br><br><br><br>
+
+<%= button_to "Create a Post!", new_post_url, method: :get %>
+<br>
+<%= link_to "<< Edit Sub", edit_sub_url(@sub) if is_moderator?(@sub)%>

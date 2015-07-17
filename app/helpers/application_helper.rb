@@ -11,4 +11,10 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def link_helper(link)
+    link.start_with?("http://") ? link : "http://" + link
+  end
+
+
+
 end
