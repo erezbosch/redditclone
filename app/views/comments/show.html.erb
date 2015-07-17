@@ -1,0 +1,15 @@
+<h1>Comment by <%= @comment.author.username %></h1>
+
+<p><%= @comment.content %></p>
+
+<h2>Replies</h2>
+<% @comment.child_comments.each do |comment| %>
+  Comment by <%= comment.author.username.capitalize %>
+  <br>
+  <p><%= comment.content %></p>
+  <%= link_to "Replies", comment_url(comment) %>
+  <br>
+  <br>
+<% end %>
+
+<%= link_to "Reply", new_nested_comment_url(@comment) %>

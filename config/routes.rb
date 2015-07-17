@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :posts, except: [:index, :destroy] do
     resources :comments, only: :new
   end
-  resources :comments, only: :create
+  resources :comments, only: [:create, :show] do
+    get 'new_nested', on: :member
+  end
 end

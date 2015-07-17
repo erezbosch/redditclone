@@ -6,14 +6,13 @@
 
 <br><br><br><font color = "Red">
 
-<% @post.comments.each do |comment| %>
-  Comment by <%= comment.author.username.capitalize %>
-  <br>
-  <%= comment.content %>
-  <br>
-  <br>
+<left>
+<ul>
+<% @comments_hash[nil].each do |comment| %>
+  <li><%= render "comment", comment: comment %></li>
 <% end %>
-
+</ul>
+</left>
 <br><br><br></font color>
 
 <%= link_to "<< Write Comment", new_post_comment_url(@post) %>

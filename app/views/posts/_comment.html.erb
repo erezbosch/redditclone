@@ -1,0 +1,17 @@
+Comment by <%= comment.author.username.capitalize %>
+at <%= comment.created_at %>
+<br>
+<p><%= comment.content %></p>
+<%= link_to "Comment", comment_url(comment) %>
+<br>
+<br>
+
+<ul>
+<% @comments_hash[comment.id].each do |comment2| %>
+  <% if comment2.parent_comment_id == comment.id %>
+    <li>
+      <%= render "comment", comment: comment2 %>
+    </li>
+  <% end %>
+<% end %>
+</ul>

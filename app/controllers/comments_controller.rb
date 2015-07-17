@@ -4,6 +4,16 @@ class CommentsController < ApplicationController
     render :new
   end
 
+  def new_nested
+    @comment = Comment.find(params[:id]).child_comments.new
+    render :new_nested
+  end
+
+  def show
+    @comment = Comment.find(params[:id])
+    render :show
+  end
+
   def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save
@@ -15,6 +25,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:post_id, :content)
+    params.require(:comment).permit(:post_id, :content, :parent_comment_id)
   end
 end
