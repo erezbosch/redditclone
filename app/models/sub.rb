@@ -8,5 +8,8 @@ class Sub < ActiveRecord::Base
     primary_key: :id,
     class_name: User
   )
-  
+
+  has_many :posts, through: :post_subs, source: :post
+  has_many :post_subs
+
 end

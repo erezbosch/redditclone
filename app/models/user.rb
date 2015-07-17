@@ -7,6 +7,13 @@ class User < ActiveRecord::Base
 
   has_many :subs
 
+  has_many(
+    :posts,
+    foreign_key: :author_id,
+    primary_key: :id,
+    class_name: :Post
+  )
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     if user && user.is_password?(password)

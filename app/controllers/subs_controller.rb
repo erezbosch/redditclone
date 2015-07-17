@@ -1,5 +1,6 @@
 class SubsController < ApplicationController
   before_action :redirect_unless_moderator, only: [:edit, :update]
+  before_action :redirect_unless_logged_in, only: [:new, :create]
 
   def index
     @subs = Sub.all
@@ -48,4 +49,6 @@ class SubsController < ApplicationController
   def redirect_unless_moderator
     redirect_to subs_url unless current_user == Sub.find(params[:id]).moderator
   end
+
+
 end

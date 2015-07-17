@@ -1,0 +1,7 @@
+<h1><%= @sub.title %></h1>
+
+<p><%= @sub.description %></p>
+
+<%= link_to "<< Edit Sub", edit_sub_url(@sub) if is_moderator?(@sub)%>
+
+<%= render partial: "post", collection: @sub.posts, as: :post %>
