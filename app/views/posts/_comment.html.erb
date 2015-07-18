@@ -4,10 +4,17 @@ at <%= comment.created_at %>
 <p><%= comment.content %></p>
 <%= link_to "Comment", comment_url(comment) %>
 <br>
+<%= button_to "Like", upvote_comment_url(comment) %>
+<%= button_to "Hate", downvote_comment_url(comment) %>
+Popularity: <%= comment.score %>
+<br>
 <br>
 
 <ul>
-<% @comments_hash[comment.id].each do |comment2| %>
+<% @comments_hash[comment.id]
+   .sort_by { |comment| comment.score }
+   .reverse
+   .each do |comment2| %>
   <% if comment2.parent_comment_id == comment.id %>
     <li>
       <%= render "comment", comment: comment2 %>

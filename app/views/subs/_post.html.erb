@@ -1,2 +1,5 @@
 <%= link_to post.title, post_url(post) %>
+<%= button_to "Like", upvote_post_url(post) %>
+<%= button_to "Hate", downvote_post_url(post) %>
+Popularity: <%= post.score %>
 <br>

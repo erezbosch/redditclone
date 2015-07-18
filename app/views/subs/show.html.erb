@@ -3,7 +3,8 @@
 <p><%= @sub.description %></p>
 
 <br><br><br>
-<%= render partial: "post", collection: @sub.posts, as: :post %>
+<% collection = @sub.posts.sort_by { |post| post.score }.reverse %>
+<%= render partial: "post", collection: collection, as: :post %>
 <br><br><br><br>
 
 <%= button_to "Create a Post!", new_post_url, method: :get %>

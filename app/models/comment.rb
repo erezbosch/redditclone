@@ -18,5 +18,9 @@ class Comment < ActiveRecord::Base
     class_name: Comment
   )
 
+  has_many :votes, as: :votable
 
+  def score
+    votes.pluck(:value).sum
+  end
 end

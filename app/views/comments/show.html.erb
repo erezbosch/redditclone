@@ -1,7 +1,10 @@
 <h1>Comment by <%= @comment.author.username %></h1>
 
-<p><%= @comment.content %></p>
-
+<p><%= @comment.content %></p><br>
+<%= button_to "Like", upvote_comment_url(@comment) %>
+<%= button_to "Hate", downvote_comment_url(@comment) %>
+Popularity: <%= @comment.score %>
+<br>
 <h2>Replies</h2>
 <% @comment.child_comments.each do |comment| %>
   Comment by <%= comment.author.username.capitalize %>

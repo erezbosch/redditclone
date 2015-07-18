@@ -3,12 +3,19 @@
 <%= link_to "is this true? click here", link_helper(@post.url) %>
 <br><br>
 <%= @post.content %>
+<br><br>
 
+<%= button_to "Like", upvote_post_url(@post) %>
+<%= button_to "Hate", downvote_post_url(@post) %>
+Popularity: <%= @post.score %>
 <br><br><br><font color = "Red">
 
 <left>
 <ul>
-<% @comments_hash[nil].each do |comment| %>
+<% @comments_hash[nil]
+   .sort_by { |comment| comment.score }
+   .reverse
+   .each do |comment| %>
   <li><%= render "comment", comment: comment %></li>
 <% end %>
 </ul>

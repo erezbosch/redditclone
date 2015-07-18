@@ -48,5 +48,16 @@ class PostsController < ApplicationController
     redirect_to subs_url unless current_user == Post.find(params[:id]).author
   end
 
+  def upvote
+    post = Post.find(params[:id])
+    post.votes.create!(value: 1)
+    redirect_to post_url(post)
+  end
+
+  def downvote
+    post = Post.find(params[:id])
+    post.votes.create!(value: -1)
+    redirect_to post_url(post)
+  end
 
 end
